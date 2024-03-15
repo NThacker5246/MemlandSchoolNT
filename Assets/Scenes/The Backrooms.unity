@@ -436,9 +436,10 @@ GameObject:
   - component: {fileID: 220037294}
   - component: {fileID: 220037300}
   - component: {fileID: 220037301}
+  - component: {fileID: 220037302}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: DarkEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,6 +588,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 3, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &220037302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220037293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758cba600c55ff141a12485e9b575000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthppint: 30
 --- !u!1 &238980782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1db61c30c2de742bd6b761bf13fc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  file: {fileID: 0}
+  inventory: {fileID: 0}
+  prefs: []
 --- !u!4 &491739425
 Transform:
   m_ObjectHideFlags: 0
@@ -1829,6 +1846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1848467346}
   smoothTime: 0
+  roX: 0
 --- !u!1 &1039352864
 GameObject:
   m_ObjectHideFlags: 0

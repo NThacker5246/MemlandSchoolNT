@@ -5,13 +5,15 @@ using UnityEngine;
 public class gun : MonoBehaviour
 {
 	public GameObject pat;
+    public Transform tr;
+
+    public void Start(){
+        tr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
+
     public void Shoot(){
-    	Transform tr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-    	Vector3 tr1 = new Vector3(tr.position.x, tr.position.y, tr.position.z);
-    	Transform ts = pat.GetComponent<Transform>();
-    	ts.eulerAngles = new Vector3(0f, tr.eulerAngles.y, 0f);
-    	ts.position = tr1;
-    	Instantiate(pat, Quaternion.Euler(tr.eulerAngles)*tr1, Quaternion.Euler(tr.eulerAngles));
+    	//Vector3 tr1 = new Vector3(tr.position.x, tr.position.y, tr.position.z);
+    	Instantiate(pat, tr.position, Quaternion.Euler(tr.eulerAngles));
     }
 
     private void OnMouseDown(){
@@ -21,6 +23,7 @@ public class gun : MonoBehaviour
     void Update(){
         if(Input.GetMouseButtonDown(0)){
             Shoot();
+            Debug.Log("Shot");
         }
     }
 }

@@ -6,7 +6,7 @@ public class PlayerC2 : MonoBehaviour
 {
 	public int speed;
 	public Rigidbody rb;
-	public bool isGrounded;
+	public int JumpsRemain = 1;
 	public float jumpForce;
 	public GameManager Gm;
 	
@@ -71,12 +71,19 @@ public class PlayerC2 : MonoBehaviour
 
 	private void CheckJumpInput()
 	{
-		if(isGrounded == true && Input.GetKeyDown(KeyCode.Space)){
+		if(JumpsRemain > 0 && Input.GetKeyDown(KeyCode.Space)){
 			rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
+			JumpsRemain -= 1;
+			StartCoroutine("RestoreJump");
 		}
 		if(transform.position.y < -200){
 			Gm.RestartGame();
 		}
+	}
+
+	IEnumerator RestoreJump(){
+		yield return new WaitForSeconds(1f);
+		JumpsRemain += 1;
 	}
 }
 

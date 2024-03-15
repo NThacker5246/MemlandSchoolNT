@@ -26,6 +26,12 @@ public class Pattron : MonoBehaviour
 		if(other.tag == "ground"){
 			//isGrounded = true;
 		}
+
+		if(other.tag == "DarkEnemy"){
+			HP hp = other.GetComponent<HP>();
+			hp.Damage(2);
+			Destroy(gameObject);
+		}
 	}
 
 	public void FixedUpdate(){

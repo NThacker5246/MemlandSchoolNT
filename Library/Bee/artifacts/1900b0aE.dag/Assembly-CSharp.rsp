@@ -361,6 +361,8 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/gun.cs"
 "Assets/Scripts/Guner.cs"
+"Assets/Scripts/HP.cs"
+"Assets/Scripts/Inventory/Blocks/Door1.cs"
 "Assets/Scripts/Inventory/Blocks/Stone1.cs"
 "Assets/Scripts/Inventory/Blocks/Wood1.cs"
 "Assets/Scripts/Inventory/Inventory.cs"

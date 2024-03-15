@@ -10,6 +10,8 @@ TagManager:
   - Wood
   - axe
   - ground
+  - Card
+  - DarkEnemy
   layers:
   - Default
   - TransparentFX
