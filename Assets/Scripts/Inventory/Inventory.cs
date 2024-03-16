@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
     public GameObject inventory;
     private bool inventoryOn;
 
+    public Animator an;
+
     private void Start()
     {
         inventoryOn = false;
@@ -59,6 +61,25 @@ public class Inventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
                 isHOT = i - 1;
+                foreach(Transform item in slots[isHOT].transform){
+                    if(item.tag == "pick"){
+                        an.SetBool("inHandPick", true);
+                        an.SetBool("inHandAxe", false);
+                        an.SetBool("inHandCard", false);
+                    } else if(item.tag == "axe"){
+                        an.SetBool("inHandPick", false);
+                        an.SetBool("inHandAxe", true);
+                        an.SetBool("inHandCard", false);
+                    } else if(item.tag == "Card"){
+                        an.SetBool("inHandPick", false);
+                        an.SetBool("inHandAxe", false);
+                        an.SetBool("inHandCard", true);
+                    } else {
+                        an.SetBool("inHandPick", false);
+                        an.SetBool("inHandAxe", false);
+                        an.SetBool("inHandCard", false);
+                    }
+                }
             }
         }
     }

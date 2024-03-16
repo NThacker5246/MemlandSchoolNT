@@ -31,10 +31,17 @@ public class Door1 : MonoBehaviour
 			GameObject Slot = player.slots[player.isHOT];
 			foreach(Transform item in Slot.transform){
 				if(item.tag == "Card"){
+					player.an.SetBool("isUseCard", true);
+					StartCoroutine("Opn");
 					flag = !flag;
 					anim.SetBool("Door", flag);
 				}
 			}
 		}
+	}
+
+	IEnumerator Opn(){
+		yield return new WaitForSeconds(0.8333f);
+		player.an.SetBool("isUseCard", false); 
 	}
 }

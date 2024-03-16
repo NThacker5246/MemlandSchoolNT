@@ -25,10 +25,17 @@ public class Wood1 : MonoBehaviour
 			GameObject slt = player.slots[player.isHOT];
 			foreach(Transform item in slt.GetComponent<Transform>()){
 				if(item.tag == "axe"){
-					Destroy(gameObject);
+					player.an.SetBool("isUseAxe", true);
+					StartCoroutine("Breaking");
 					return;
 				}
 			}
 		}
+	}
+
+	IEnumerator Breaking(){
+		yield return new WaitForSeconds(0.5f);
+		player.an.SetBool("isUseAxe", false);
+		Destroy(gameObject);
 	}
 }

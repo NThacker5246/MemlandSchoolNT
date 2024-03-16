@@ -25,10 +25,17 @@ public class Stone1 : MonoBehaviour
 			GameObject slt = player.slots[player.isHOT];
 			foreach(Transform item in slt.GetComponent<Transform>()){
 				if(item.tag == "pick"){
-					Destroy(gameObject);
+					player.an.SetBool("isUsePick", true);
+					StartCoroutine("Breaking");
 					return;
 				}
 			}
 		}
+	}
+
+	IEnumerator Breaking(){
+		yield return new WaitForSeconds(0.5f);
+		player.an.SetBool("isUsePick", false);
+		Destroy(gameObject);
 	}
 }
