@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 680046606064883549}
   m_Layer: 5
   m_Name: gun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,3 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pat: {fileID: 5215735071257451596, guid: 2fa1f805df7afee47afbd7d37372555e, type: 3}
+  tr: {fileID: 0}

@@ -10,6 +10,7 @@ public class Pattron : MonoBehaviour
 	public Transform player;
 	public Rigidbody rb;
 	public bool isGrounded;
+	public bool isStopped;
 	
 	private void Start(){
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -24,7 +25,7 @@ public class Pattron : MonoBehaviour
 			return;
 		}
 		if(other.tag == "ground"){
-			//isGrounded = true;
+			isGrounded = true;
 		}
 
 		if(other.tag == "DarkEnemy"){
@@ -41,7 +42,7 @@ public class Pattron : MonoBehaviour
 			transform.position += movement;
 			//rb.AddForce(movement);
 		} else {
-			return;
+			Destroy(gameObject);
 		}
 	}
 }

@@ -66,18 +66,27 @@ public class Inventory : MonoBehaviour
                         an.SetBool("inHandPick", true);
                         an.SetBool("inHandAxe", false);
                         an.SetBool("inHandCard", false);
+                        an.SetBool("inHandGun", false);
                     } else if(item.tag == "axe"){
                         an.SetBool("inHandPick", false);
                         an.SetBool("inHandAxe", true);
                         an.SetBool("inHandCard", false);
+                        an.SetBool("inHandGun", false);
                     } else if(item.tag == "Card"){
                         an.SetBool("inHandPick", false);
                         an.SetBool("inHandAxe", false);
                         an.SetBool("inHandCard", true);
+                        an.SetBool("inHandGun", false);
+                    } else if(item.tag == "Gun"){
+                        an.SetBool("inHandPick", false);
+                        an.SetBool("inHandAxe", false);
+                        an.SetBool("inHandCard", false);
+                        an.SetBool("inHandGun", true);
                     } else {
                         an.SetBool("inHandPick", false);
                         an.SetBool("inHandAxe", false);
                         an.SetBool("inHandCard", false);
+                        an.SetBool("inHandGun", false);
                     }
                 }
             }

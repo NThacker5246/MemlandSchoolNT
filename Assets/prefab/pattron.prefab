@@ -111,7 +111,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 96
@@ -129,11 +129,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velx: 0
-  vely: 0.05
+  vely: 0.01
   GmManager: {fileID: 1031797038093477518, guid: ce63dd20a4621694b9f7cf3e10cc2e79, type: 3}
   player: {fileID: 0}
   rb: {fileID: 0}
   isGrounded: 0
+  isStopped: 0
 --- !u!135 &5215735071257451595
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -145,5 +146,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.83393884
-  m_Center: {x: -0.049999952, y: 0.3169307, z: 0.2670081}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
