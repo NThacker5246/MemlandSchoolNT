@@ -364,6 +364,7 @@
 "Assets/Scripts/HP.cs"
 "Assets/Scripts/Inventory/Blocks/Door1.cs"
 "Assets/Scripts/Inventory/Blocks/Stone1.cs"
+"Assets/Scripts/Inventory/Blocks/Unitaz.cs"
 "Assets/Scripts/Inventory/Blocks/Wood1.cs"
 "Assets/Scripts/Inventory/Inventory.cs"
 "Assets/Scripts/Inventory/OldScripts/Block.cs"
