@@ -21,7 +21,7 @@ public class Wood1 : MonoBehaviour
 
 	void Update(){
 		if(Input.GetMouseButtonDown(0) && inColl){
-			int i = 0;
+			//int i = 0;
 			GameObject slt = player.slots[player.isHOT];
 			foreach(Transform item in slt.GetComponent<Transform>()){
 				if(item.tag == "axe"){

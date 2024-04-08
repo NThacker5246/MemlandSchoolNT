@@ -7,10 +7,10 @@ public class DialogueTrigger : MonoBehaviour
 	public Dialogue[] dialogue;
 
 	public int Count;
+	public bool isStoppedCurrentDialogue;
 
 	public void TriggerDialogue()
 	{
-		Count++;
 		FindObjectOfType<DialogueManager>().StartDialogue(dialogue[Count]);
 	}
 }

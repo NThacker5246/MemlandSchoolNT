@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
 
 	private Queue<string> sentences;
 
+	public DialogueTrigger td;
+
 	private void Start()
 	{
 		sentences = new Queue<string>();
@@ -37,7 +39,7 @@ public class DialogueManager : MonoBehaviour
 	{
 		if(sentences.Count == 0)
 		{
-			EndDialogue();
+			EndDialogue(false);
 			return;
 		}
 		string sentence = sentences.Dequeue();
@@ -55,9 +57,12 @@ public class DialogueManager : MonoBehaviour
 		}
 	}
 
-	public void EndDialogue()
+	public void EndDialogue(bool isT = true)
 	{
 		boxAnim.SetBool("boxOpen", false);
 		GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerC2>().LockCursor();
+		if(!isT){
+			td.isStoppedCurrentDialogue = true;
+		}
 	} 
 }

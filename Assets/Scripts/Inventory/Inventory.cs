@@ -61,6 +61,7 @@ public class Inventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
                 isHOT = i - 1;
+                int j = 0;
                 foreach(Transform item in slots[isHOT].transform){
                     if(item.tag == "pick"){
                         an.SetBool("inHandPick", true);
@@ -88,6 +89,14 @@ public class Inventory : MonoBehaviour
                         an.SetBool("inHandCard", false);
                         an.SetBool("inHandGun", false);
                     }
+                    j += 1;
+                }
+
+                if(j == 0){
+                    an.SetBool("inHandPick", false);
+                    an.SetBool("inHandAxe", false);
+                    an.SetBool("inHandCard", false);
+                    an.SetBool("inHandGun", false);
                 }
             }
         }

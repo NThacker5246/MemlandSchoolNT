@@ -9,8 +9,8 @@ public class gun : MonoBehaviour
     public Inventory player;
 
     public void Start(){
-        tr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        player = tr.GetComponent<Inventory>();
+        tr = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
     public void Shoot(){
