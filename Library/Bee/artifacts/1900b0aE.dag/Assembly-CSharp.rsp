@@ -365,7 +365,9 @@
 "Assets/Scripts/gun.cs"
 "Assets/Scripts/Guner.cs"
 "Assets/Scripts/HP.cs"
+"Assets/Scripts/Inventory/Blocks/CamBreak.cs"
 "Assets/Scripts/Inventory/Blocks/Door1.cs"
+"Assets/Scripts/Inventory/Blocks/ElectroMachine.cs"
 "Assets/Scripts/Inventory/Blocks/Stone1.cs"
 "Assets/Scripts/Inventory/Blocks/Unitaz.cs"
 "Assets/Scripts/Inventory/Blocks/Wood1.cs"
@@ -401,6 +403,12 @@
 "Assets/Scripts/VectorValue.cs"
 "Assets/Sprites/3D SP/chars/MemeColorRender.cs"
 "Assets/Sprites/3D SP/chars/Trollface.cs"
+"Assets/UnityTechnologies/ParticlePack/EffectExamples/Misc Effects/Scripts/SpawnEffect.cs"
+"Assets/UnityTechnologies/ParticlePack/Shared/Ramps/Runtime/RampAsset.cs"
+"Assets/UnityTechnologies/ParticlePack/Shared/Scripts/AdjustTimeScale.cs"
+"Assets/UnityTechnologies/ParticlePack/Shared/Scripts/ProximityActivate.cs"
+"Assets/UnityTechnologies/ParticlePack/Shared/Scripts/SimpleCameraController.cs"
+"Assets/UnityTechnologies/ParticlePack/Shared/Scripts/SimpleCharacterMotor.cs"
 -langversion:9.0
 
 /deterministic

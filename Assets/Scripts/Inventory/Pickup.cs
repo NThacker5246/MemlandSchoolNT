@@ -6,7 +6,9 @@ public class Pickup : MonoBehaviour
 {
     private Inventory inventory;
     public GameObject slotButton;
+    public bool ignore;
     public int id;
+    private int num = 1;
 
     private void Start()
     {
@@ -15,7 +17,7 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-    	if(other.CompareTag("Player"))
+    	if(other.CompareTag("Player") && !ignore)
     	{
 
     		for(int i = 0; i < inventory.slots.Length; i++)
@@ -28,6 +30,14 @@ public class Pickup : MonoBehaviour
     				break;
     			}
     		}
-    	}
+    	} else {
+            if(num == 0){
+                ignore = false;
+                num = 1;
+                return;
+            } else {
+                num -= 1;
+            }
+        }
     }
 }

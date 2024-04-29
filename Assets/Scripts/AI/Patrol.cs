@@ -19,11 +19,10 @@ public class Patrol : MonoBehaviour
 	void UpdateCounter(){
 		i += typer;
 		//curTime = delayTime;
-		i = Mathf.Clamp(i, 0, moveSpots.Length);
+		i = Mathf.Clamp(i, 0, moveSpots.Length - 1);
 	}
 
 	void Update(){
-		transform.position = Vector3.MoveTowards(transform.position, moveSpots[i].position, speed*Time.deltaTime);
 		if(Vector3.Distance(transform.position, moveSpots[i].position) < 1f){
 			/*
 			Debug.Log(curTime);
@@ -36,6 +35,8 @@ public class Patrol : MonoBehaviour
 			if(Go){
 				UpdateCounter();
 			}
+		} else {
+			transform.position = Vector3.MoveTowards(transform.position, moveSpots[i].position, speed*Time.deltaTime);
 		}
 	}
 }

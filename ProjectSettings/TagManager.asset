@@ -12,6 +12,9 @@ TagManager:
   - ground
   - Card
   - DarkEnemy
+  - Gun
+  - bottle
+  - bottle1
   layers:
   - Default
   - TransparentFX
