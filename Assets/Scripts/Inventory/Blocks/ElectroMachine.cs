@@ -42,7 +42,7 @@ public class ElectroMachine : MonoBehaviour
         		if(Voltage >= 20f){
         			part.Play();
         			StartCoroutine("p");
-        			player.AddForce(player.transform.forward * -50f);
+        			player.AddForce(player.transform.forward * -200f);
         		}
         	} else if(Input.GetKeyUp(KeyCode.E)){
         		vx = 1;
