@@ -8,11 +8,14 @@ public class Pickup : MonoBehaviour
     public GameObject slotButton;
     public bool ignore;
     public int id;
+    public SaveToFile sv;
     private int num = 1;
+
 
     private void Start()
     {
     	inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        sv = GameObject.FindGameObjectWithTag("sv").GetComponent<SaveToFile>();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotButton: {fileID: 6856993382470750423, guid: 44112c5709c86ea459b7bf8cd8bb2708, type: 3}
-  id: 0
+  ignore: 0
+  id: 4
 --- !u!135 &-5550179692458735406
 SphereCollider:
   m_ObjectHideFlags: 0

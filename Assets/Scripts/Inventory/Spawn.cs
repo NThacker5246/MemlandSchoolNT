@@ -8,17 +8,21 @@ public class Spawn : MonoBehaviour
     private Transform player;
     public Transform Camera;
     public int id;
+    public SaveToFile sv;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        sv = GameObject.FindGameObjectWithTag("sv").GetComponent<SaveToFile>();
+        sv.Check();
     }
 
     public void SpawnDroppedItem()
     {
         Vector3 playerPos = new Vector3(player.position.x, player.position.y, player.position.z + 5);
-        Instantiate(item, playerPos, Quaternion.identity);
+        GameObject gm = Instantiate(item, playerPos, Quaternion.identity);
+        sv.AddItem(gm);
     }
 
     public void ThrowItem()
@@ -30,6 +34,7 @@ public class Spawn : MonoBehaviour
         gm.GetComponent<Rigidbody>().AddForce(Quaternion.Euler(an)*new Vector3(0, 0, 1000));
         gm.GetComponent<Pickup>().ignore = true;
         StartCoroutine(bott(gm));
+        sv.AddItem(gm);
     }
 
     IEnumerator bott(GameObject gm){

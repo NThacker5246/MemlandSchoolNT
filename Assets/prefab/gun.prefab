@@ -93,7 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 186608265847669607, guid: a2e4905cbaf380945a79a6d4690fd916, type: 3}
-  id: 2
+  Camera: {fileID: 0}
+  id: 4
 --- !u!114 &-2822563098580144635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,3 +174,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pat: {fileID: 5215735071257451596, guid: 2fa1f805df7afee47afbd7d37372555e, type: 3}
   tr: {fileID: 0}
+  player: {fileID: 0}

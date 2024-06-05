@@ -90,4 +90,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 4679353293252624391, guid: 4a6f3d960f0bef74c91f1b95e346aaba, type: 3}
-  id: 0
+  Camera: {fileID: 0}
+  id: 2
