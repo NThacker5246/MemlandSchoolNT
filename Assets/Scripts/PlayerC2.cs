@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class PlayerC2 : MonoBehaviour
 {
-	public int speed;
-	public Rigidbody rb;
+	[SerializeField] private float speed;
+	[SerializeField] private Rigidbody rb;
+	[SerializeField] private float mouseSensitivity = 100f;
+	[SerializeField] private Transform other;
+	[SerializeField] private float jumpForce;
+
 	public int JumpsRemain = 1;
-	public float jumpForce;
+	public int JumpMax;
 	public GameManager Gm;
+	[SerializeField] private float G, gV;
 	
 	private float rotationY = 0f;
 	
 	private void FixedUpdate()
 	{
+		CheckJumpInput();
 		MovePlayer();
 	}
 
@@ -21,16 +27,16 @@ public class PlayerC2 : MonoBehaviour
 	{
 		float horizontal = Input.GetAxis("Horizontal") * speed;
 		float vertical = Input.GetAxis("Vertical") * speed;
-		Vector3 movement = new Vector3(horizontal, 0f, vertical);
+		Vector3 movement = new Vector3(horizontal, gV, vertical);
 
 		if (movement != Vector3.zero)
 		{
 			movement = Quaternion.Euler(0f, rotationY, 0f) * movement;
-			rb.AddForce(movement);
+			//rb.AddForce(movement);
+			rb.linearVelocity = movement;
 		}
 	}
 
-	public float mouseSensitivity = 100f;
 
 	private void Start()
 	{
@@ -48,7 +54,13 @@ public class PlayerC2 : MonoBehaviour
 	private void Update()
 	{
 		RotatePlayerWithMouse();
-		CheckJumpInput();
+		if(Input.GetKeyDown(KeyCode.L)){
+			LockCursor();
+		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			UnlockCursor();
+		}
 	}
 
 	private void RotatePlayerWithMouse()
@@ -56,11 +68,6 @@ public class PlayerC2 : MonoBehaviour
 		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 		rotationY += mouseX;
 		transform.localRotation = Quaternion.Euler(0f, rotationY, 0f);
-
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			UnlockCursor();
-		}
 	}
 
 	public void UnlockCursor()
@@ -71,19 +78,42 @@ public class PlayerC2 : MonoBehaviour
 
 	private void CheckJumpInput()
 	{
-		if(JumpsRemain > 0 && Input.GetKeyDown(KeyCode.Space)){
-			rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
-			JumpsRemain -= 1;
-			StartCoroutine("RestoreJump");
+		if(JumpsRemain > 0 || isGrounded()){
+			gV = 0;
+			if(Input.GetKeyDown(KeyCode.Space)) {
+				gV = 20; 
+				JumpsRemain -= 1;
+			}
+		} else {
+			gV -= G;
 		}
+
+
 		if(transform.position.y < -200){
 			Gm.RestartGame();
 		}
+
+		if(isGrounded()){
+			JumpsRemain = JumpMax;
+		}
 	}
 
-	IEnumerator RestoreJump(){
-		yield return new WaitForSeconds(1f);
-		JumpsRemain += 1;
+	public bool isGrounded() {
+    	Collider[] colliders = Physics.OverlapSphere(other.position, 0.1f); // Adjust radius as needed
+		foreach (Collider collider in colliders) {
+			if (collider != this.GetComponent<Collider>()) { // Exclude self-collider
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void Speed(float i){
+		speed = i;
+	}
+
+	public void JumpForce(float i){
+		jumpForce = i;
 	}
 }
 

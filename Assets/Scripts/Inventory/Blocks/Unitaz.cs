@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Unitaz : MonoBehaviour
 {
-	public bool inColl;
-	public bool flag;
-	public Animator anim;
+	[SerializeField] private bool inColl;
+	[SerializeField] private bool flag;
+	[SerializeField] private Animator anim;
 
 	void Start(){
 		anim = GetComponent<Animator>();

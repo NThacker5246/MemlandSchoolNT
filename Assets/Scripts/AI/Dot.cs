@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Dot : MonoBehaviour
 {
-	public Patrol NPC;
+	public Transform parent;
+	public Transform[] moveSpots;
+
+	void Start(){
+		byte i = 0;
+		foreach(Transform child in parent){
+			moveSpots[i] = child;
+			i += 1;
+		}
+	}
 	
 }

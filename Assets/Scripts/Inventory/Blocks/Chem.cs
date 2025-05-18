@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Chem : MonoBehaviour
 {
-	public Animator anim;
-	public bool inColl;
-	public ParticleSystem part;
+	[SerializeField] private Animator anim;
+	[SerializeField] private bool inColl;
+	[SerializeField] private ParticleSystem part;
 	private Rigidbody player;
 
 	void OnTriggerEnter(Collider other){

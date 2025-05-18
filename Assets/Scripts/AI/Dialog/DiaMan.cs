@@ -7,6 +7,7 @@ public class DiaMan : MonoBehaviour
 {
 	//for every npc
 	public DialogData[] data;
+	public Dailogs[] dt;
 	public int i;
 	public int j;
 	public Text dialogText;
@@ -14,7 +15,9 @@ public class DiaMan : MonoBehaviour
 	public bool inColl;
 	public bool isStarted;
 	public Animator box;
-	public bool isStCD;
+	public bool isStCD;	
+
+	public SaveToFile sv;
 
 	public void NextDialogue(){
 		isStarted = true;
@@ -25,13 +28,13 @@ public class DiaMan : MonoBehaviour
 	public void SentDialog(){
 		StopAllCoroutines();
 		box.SetBool("boxOpen", true);
-		nameText.text = data[i].name;
+		nameText.text = dt[sv.c].data[i].name;
 		StartCoroutine("DisplayDialog");
 	}
 
 	public void NextSent(){
-		Debug.Log(j < data[i].senteces.Length);
-		if(j < data[i].senteces.Length-1) {
+		Debug.Log(j < dt[sv.c].data[i].senteces.Length);
+		if(j < dt[sv.c].data[i].senteces.Length-1) {
 			j += 1;
 			SentDialog();
 		} else {
@@ -44,7 +47,7 @@ public class DiaMan : MonoBehaviour
 
 	IEnumerator DisplayDialog(){
 		dialogText.text = "";
-		DialogData current = data[i];
+		DialogData current = dt[sv.c].data[i];
 		string sentece = current.senteces[j];
 		char[] sentece1 = sentece.ToCharArray();
 		foreach(char letter in sentece1){
@@ -77,4 +80,9 @@ public class DiaMan : MonoBehaviour
 			}
 		}
 	}
+}
+
+[System.Serializable]
+public class Dailogs {
+	public DialogData[] data;
 }

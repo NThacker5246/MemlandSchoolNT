@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Stone1 : MonoBehaviour
 {
-	public bool inColl;
-	public Inventory player;
+	[SerializeField] private bool inColl;
+	[SerializeField] private Inventory player;
 
 	void OnTriggerEnter(Collider other){
 		if(other.tag == "Player"){
@@ -23,12 +23,15 @@ public class Stone1 : MonoBehaviour
 		if(Input.GetMouseButtonDown(0) && inColl){
 			//int i = 0;
 			GameObject slt = player.slots[player.isHOT];
-			foreach(Transform item in slt.GetComponent<Transform>()){
+			if(slt.transform.childCount > 0) {
+				Transform item = slt.transform.GetChild(0);
+				//foreach(Transform item in slt.GetComponent<Transform>()){
 				if(item.tag == "pick"){
 					player.an.SetBool("isUsePick", true);
 					StartCoroutine("Breaking");
 					return;
 				}
+				//}
 			}
 		}
 	}

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Door1 : MonoBehaviour
 {
-	public bool inColl;
-	public bool flag;
-	public Animator anim;
-	public Inventory player;
+	[SerializeField] private bool inColl;
+	[SerializeField] private bool flag;
+	[SerializeField] private Animator anim;
+	[SerializeField] private Inventory player;
 
 	private void Start(){
 		anim = GetComponent<Animator>();
@@ -29,7 +29,9 @@ public class Door1 : MonoBehaviour
 	private void Update(){
 		if(Input.GetMouseButtonDown(0) && inColl){
 			GameObject Slot = player.slots[player.isHOT];
-			foreach(Transform item in Slot.transform){
+			if(Slot.transform.childCount > 0) {
+				Transform item = Slot.transform.GetChild(0);
+				//foreach(Transform item in Slot.transform){
 				if(item.tag == "Card"){
 					player.an.SetBool("isUseCard", true);
 					StartCoroutine("Opn");
@@ -37,6 +39,7 @@ public class Door1 : MonoBehaviour
 					anim.SetBool("Door", flag);
 				}
 			}
+			//}
 		}
 	}
 

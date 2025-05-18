@@ -19,11 +19,11 @@ public class SpeedUp : MonoBehaviour
 		if(orbs.orbs >= costs[i+1]){
 			i += 1;
 			if(type == "speed"){
-				player.speed = speeds[i];
+				player.Speed(speeds[i]);
 			} else if(type == "jumpSt"){
-				player.jumpForce = (float) speeds[i];
+				player.JumpForce((float) speeds[i]);
 			} else if(type == "jumps"){
-				player.JumpsRemain = speeds[i];
+				player.JumpMax = speeds[i];
 			}
 			txt.text = "" + i;
 			orbs.orbs -= costs[i];

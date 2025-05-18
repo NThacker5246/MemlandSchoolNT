@@ -8,7 +8,11 @@ public class Patrol : MonoBehaviour
 	public int i;
 	public int typer;
 	public Transform[] moveSpots;
+	public DotsInLevel[] dt;
+	public SaveToFile sv;
 	public bool Go;
+	[SerializeField] private bool frame;
+	[SerializeField] private float RestrictMov;
 	//public float delayTime;
 	//public float curTime;
 
@@ -19,11 +23,25 @@ public class Patrol : MonoBehaviour
 	void UpdateCounter(){
 		i += typer;
 		//curTime = delayTime;
-		i = Mathf.Clamp(i, 0, moveSpots.Length - 1);
+		i = Mathf.Clamp(i, 0, dt[sv.c].moveSpots.Length - 1);
 	}
 
 	void Update(){
-		if(Vector3.Distance(transform.position, moveSpots[i].position) < 1f){
+		if(!frame){
+			if(dt[sv.c].moveSpots.Length == 0){
+				gameObject.SetActive(false);
+				print("This if");
+			} else {
+				transform.position = dt[sv.c].moveSpots[i].position;
+				print($"This else {sv.c}");
+			}
+			frame = true;
+		}
+
+		print(Vector3.Distance(transform.position, dt[sv.c].moveSpots[i].position));
+		print(i);
+
+		if(Vector3.Distance(transform.position, dt[sv.c].moveSpots[i].position) <= RestrictMov){
 			/*
 			Debug.Log(curTime);
 			if(curTime <= 0){
@@ -35,8 +53,16 @@ public class Patrol : MonoBehaviour
 			if(Go){
 				UpdateCounter();
 			}
+
+			print(true);
 		} else {
-			transform.position = Vector3.MoveTowards(transform.position, moveSpots[i].position, speed*Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, dt[sv.c].moveSpots[i].position, speed*Time.deltaTime);
 		}
 	}
+}
+
+[System.Serializable]
+public class DotsInLevel 
+{
+	public Transform[] moveSpots;
 }

@@ -17,6 +17,11 @@ TagManager:
   - bottle1
   - sv
   - pt
+  - vip
+  - bul
+  - AlmondWater
+  - LBP
+  - takeable
   layers:
   - Default
   - TransparentFX

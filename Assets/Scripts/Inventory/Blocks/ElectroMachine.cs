@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ElectroMachine : MonoBehaviour
 {
-	public Transform circle;
-	public float Voltage;
-	public bool inColl;
-	public float roX;
-	public float vx = 1;
-	public ParticleSystem part;
+	[SerializeField] private Transform circle;
+	[SerializeField] private float Voltage;
+	[SerializeField] private bool inColl;
+	[SerializeField] private float roX;
+	[SerializeField] private float vx = 1;
+	[SerializeField] private ParticleSystem part;
 	private Rigidbody player;
 
 	void OnTriggerEnter(Collider other){

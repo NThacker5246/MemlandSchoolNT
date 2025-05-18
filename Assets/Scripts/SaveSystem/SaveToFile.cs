@@ -14,8 +14,11 @@ public class SaveToFile : MonoBehaviour
 	public GameObject[] its;
 	public Button1 btn;
 	public MemeAIController Trollface;
+	public Vipravitel v1;
+	public Vipravitel v2;
+	public int c;
 
-	void Start(){
+	void Awake(){
 		try {
 			ReadState();
 		} catch (Exception e) {
@@ -24,23 +27,39 @@ public class SaveToFile : MonoBehaviour
 	}
 
 	void Update(){
+		
 		if(Input.GetKeyDown(KeyCode.I)){
-			CreateState();
+			CreateState(false);
 		}
+		/*
 		try {
 			Check();
 		} catch (Exception e){
 			Debug.Log(e.ToString());
 			return;
 		}
+		*/
 	}
 
 	public void Check(){
+		/*
+			GameObject[] newItems = new GameObject[its.Length-1];
+			int i = 0;
+			foreach(GameObject gm in its){
+				if(gm != null){
+					newItems[i] = gm;
+					i += 1;
+				}
+			}
+
+			its = newItems;
+		*/
 		GameObject[] newItems = new GameObject[its.Length-1];
-		int i = 0;
+		short i = 0;
 		foreach(GameObject gm in its){
 			if(gm != null){
 				newItems[i] = gm;
+				gm.GetComponent<Pickup>().num = i;
 				i += 1;
 			}
 		}
@@ -48,7 +67,7 @@ public class SaveToFile : MonoBehaviour
 		its = newItems;
 	}
 
-	public void AddItem(GameObject gm){
+	public short AddItem(GameObject gm){
 		GameObject[] temp = its;
 		its = new GameObject[temp.Length + 1];
 		int i = 0;
@@ -57,6 +76,7 @@ public class SaveToFile : MonoBehaviour
 			i += 1;
 		}
 		its[its.Length - 1] = gm;
+		return (short) (its.Length - 1);
 	}
 
 	public void StartGame(){
@@ -65,7 +85,10 @@ public class SaveToFile : MonoBehaviour
 		SceneManager.LoadScene(newData.level);
 	}
 
-	public void CreateState(){
+	public void CreateState(bool isPortal){
+		if(Trollface.isEnded && Trollface.c == c){
+			c += 1;
+		}
 		Vector3 position = player.position;
 		Inventory inv = player.GetComponent<Inventory>();
 		int[] ids = new int[7];
@@ -102,19 +125,23 @@ public class SaveToFile : MonoBehaviour
 		int s = Trollface.MovementAI.i;
 		int dialog = Trollface.dm.i;
 
+		if(isPortal){
+			dialog = 0;
+		}
+
 		try {
 			Data oldData = JsonUtility.FromJson<Data>(ReadNewTextFile("TEMP.json", "./saves"));
 			if(level == 0){
-				Data newData = new Data(position, ids, level, write, oldData.itemInB, btn.isDid, s, dialog); //инициализация объекта
+				Data newData = new Data(position, ids, level, write, oldData.itemInB, btn.isDid, s, dialog, oldData.v1, oldData.v2, c); //инициализация объекта
 				string json = JsonUtility.ToJson(newData);
 				CreateNewTextFile(json, "TEMP.json", "./Saves");
 			} else if(level == 1){
-				Data newData = new Data(position, ids, level, oldData.itemInM, write, oldData.isOpPor, s, dialog); //инициализация объекта
+				Data newData = new Data(position, ids, level, oldData.itemInM, write, oldData.isOpPor, s, dialog, v1.isDid, v2.isDid, c); //инициализация объекта
 				string json = JsonUtility.ToJson(newData);
 				CreateNewTextFile(json, "TEMP.json", "./Saves");
 			}
 		} catch (Exception e){
-			Data newData = new Data(position, ids, level, write, new string[1], false, s, dialog); //инициализация объекта
+			Data newData = new Data(position, ids, level, write, new string[1], false, s, dialog, false, false, c); //инициализация объекта
 			string json = JsonUtility.ToJson(newData);
 			CreateNewTextFile(json, "TEMP.json", "./Saves");
 			Debug.Log(e.ToString());
@@ -126,12 +153,17 @@ public class SaveToFile : MonoBehaviour
 		string json = ReadNewTextFile("TEMP.json", "./Saves");
 		Data newData = JsonUtility.FromJson<Data>(json);
 		player.position = newData.position;
-		int i = 0;
+		short i = 0;
 		Inventory inv = player.GetComponent<Inventory>();
 		foreach(int id in newData.ids){
 			if(id != -1) {
 				Instantiate(items[id], inv.slots[i].transform);
-				inv.isFull[i] = true;
+				inv.emp = (short) (i+1);
+				//inv.isFull[i] = true;
+				inv.SetBit(i);
+			} else {
+				inv.delC += 1;
+				inv.ResetBit(i);
 			}
 			i += 1;
 		}
@@ -152,8 +184,9 @@ public class SaveToFile : MonoBehaviour
 			its = new GameObject[newData.itemInM.Length];
 			i = 0;
 			foreach(ItemN it in wrt){
-				GameObject gm = Instantiate(items[it.id].GetComponent<Spawn>().item, it.pos, Quaternion.identity);
+				GameObject gm = Instantiate(items[it.id].GetComponent<Spawn>().item, it.pos, items[it.id].GetComponent<Spawn>().item.transform.rotation);
 				its[i] = gm;
+				gm.GetComponent<Pickup>().num = (short) i;
 				i += 1;
 			}
 			btn.isDid = newData.isOpPor;
@@ -172,13 +205,38 @@ public class SaveToFile : MonoBehaviour
 			foreach(ItemN it in wrt){
 				GameObject gm = Instantiate(items[it.id].GetComponent<Spawn>().item, it.pos, Quaternion.identity);
 				its[i] = gm;
+				gm.GetComponent<Pickup>().num = (short) i;
 				i += 1;
 			}
 		}
 
-		Trollface.MovementAI.i = newData.s;
-		Trollface.transform.position = Trollface.MovementAI.moveSpots[newData.s].position;
-		Trollface.dm.i = newData.dialog;
+		i = 0;
+		for(i = 0; i < its.Length; i++){
+			its[i].GetComponent<Pickup>().num = i;
+		}
+
+		if(Trollface != null) {
+			Trollface.MovementAI.i = newData.s;
+			c = newData.c;
+			Trollface.transform.position = Trollface.MovementAI.dt[newData.c].moveSpots[newData.s].position;
+			Trollface.dm.i = newData.dialog;
+			c = newData.c;
+			// /Trollface.c = c;
+		}
+
+		if(v1 != null){
+			v1.isDid = newData.v1;
+		}
+		if(v2 != null){
+			v2.isDid = newData.v2;
+		}
+
+		c = newData.c;
+
+		//Inventory inv = player.GetComponent<Inventory>();
+		for(byte j = 0; j < inv.slots.Length; j++){
+			inv.emp += 1;
+		}
 	}
 
 	public void CreateNewTextFile(string data, string name, string way)
@@ -207,8 +265,11 @@ struct Data {
 	public bool isOpPor;
 	public int s;
 	public int dialog;
+	public bool v1;
+	public bool v2;
+	public int c;
 
-	public Data(Vector3 position, int[] ids, int level, string[] itemInM, string[] itemInB, bool isOpPor, int s, int dialog){
+	public Data(Vector3 position, int[] ids, int level, string[] itemInM, string[] itemInB, bool isOpPor, int s, int dialog, bool v1, bool v2, int c){
 		this.position = position; //приравнивание
 		this.ids = ids;
 		this.level = level;
@@ -217,6 +278,9 @@ struct Data {
 		this.isOpPor = isOpPor;
 		this.s = s;
 		this.dialog = dialog;
+		this.v1 = v1;
+		this.v2 = v2;
+		this.c = c;
 	}
 }
 

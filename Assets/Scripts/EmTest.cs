@@ -35,13 +35,16 @@ public class EmTest : MonoBehaviour
     // Положение точки назначения
     public Transform goal;
     public bool IsENEMY;
+    public UnityEngine.AI.NavMeshAgent agent;
+
+    void Start(){
+   		goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+   		// Получение компонента агента
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+    }
 
     void FixedUpdate()
-    {
-    	goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        // Получение компонента агента
-        UnityEngine.AI.NavMeshAgent agent
-            = GetComponent<UnityEngine.AI.NavMeshAgent>();
+    {    
         // Указаие точки назначения
         agent.destination = goal.position;
     }

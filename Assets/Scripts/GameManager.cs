@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public VectorValue file;
 	public Inventory inventory;
 	public GameObject[] prefs;
 	public void RestartGame()

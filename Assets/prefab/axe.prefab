@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 462427922, guid: f6e4be16dd0df9343b256a8c476ef463, type: 3}
+  m_Sprite: {fileID: -218752957, guid: 0b5318cb995df4d409df88d4a7c76693, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -92,7 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 5087792939548220141, guid: f5369f028e4aec2459a9d5426caef041, type: 3}
+  Camera: {fileID: 0}
   id: 0
+  sv: {fileID: 0}
 --- !u!114 &-7362455590246351851
 MonoBehaviour:
   m_ObjectHideFlags: 0

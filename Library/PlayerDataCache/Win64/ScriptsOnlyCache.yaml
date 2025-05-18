@@ -1,10 +1,12 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Button1
     - CamBreak
     - CameraMY
     - ChangeTexture
     - Chem
+    - DiaMan
     - DialogueAnimator
     - DialogueManager
     - DialogueTrigger
@@ -24,6 +26,7 @@ ScriptsOnlyBuild:
     - Pickup
     - PlayerC2
     - PlayerHealth
+    - SaveToFile
     - Skillset
     - Slot
     - Spawn
@@ -50,8 +53,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -67,6 +72,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
   serializedClasses:
     Assembly-CSharp:
+    - DialogData
     - Dialogue
     Cinemachine:
     - Cinemachine.CinemachineBlendDefinition
@@ -211,59 +217,65 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 4186}
+      Script: {instanceID: 4180}
     - Class: 114
-      Script: {instanceID: 4226}
+      Script: {instanceID: 4188}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4228}
     - Class: 114
-      Script: {instanceID: 4610}
+      Script: {instanceID: 4504}
     - Class: 114
-      Script: {instanceID: 4848}
+      Script: {instanceID: 4612}
     - Class: 114
-      Script: {instanceID: 5070}
+      Script: {instanceID: 4852}
     - Class: 114
-      Script: {instanceID: 5110}
+      Script: {instanceID: 4980}
     - Class: 114
-      Script: {instanceID: 5168}
+      Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5236}
+      Script: {instanceID: 5116}
     - Class: 114
-      Script: {instanceID: 5344}
+      Script: {instanceID: 5174}
     - Class: 114
-      Script: {instanceID: 5464}
+      Script: {instanceID: 5242}
     - Class: 114
-      Script: {instanceID: 5684}
+      Script: {instanceID: 5350}
     - Class: 114
-      Script: {instanceID: 5752}
+      Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 5772}
+      Script: {instanceID: 5690}
     - Class: 114
-      Script: {instanceID: 5916}
+      Script: {instanceID: 5758}
     - Class: 114
-      Script: {instanceID: 6136}
+      Script: {instanceID: 5778}
     - Class: 114
-      Script: {instanceID: 6288}
+      Script: {instanceID: 5922}
     - Class: 114
-      Script: {instanceID: 6716}
+      Script: {instanceID: 6142}
     - Class: 114
-      Script: {instanceID: 6884}
+      Script: {instanceID: 6294}
     - Class: 114
-      Script: {instanceID: 6974}
+      Script: {instanceID: 6722}
     - Class: 114
-      Script: {instanceID: 7130}
+      Script: {instanceID: 6890}
     - Class: 114
-      Script: {instanceID: 7352}
+      Script: {instanceID: 6980}
     - Class: 114
-      Script: {instanceID: 7476}
+      Script: {instanceID: 7136}
     - Class: 114
-      Script: {instanceID: 7606}
+      Script: {instanceID: 7358}
     - Class: 114
-      Script: {instanceID: 7710}
+      Script: {instanceID: 7482}
     - Class: 114
-      Script: {instanceID: 7984}
+      Script: {instanceID: 7612}
     - Class: 114
-      Script: {instanceID: 8152}
+      Script: {instanceID: 7716}
+    - Class: 114
+      Script: {instanceID: 7778}
+    - Class: 114
+      Script: {instanceID: 7992}
+    - Class: 114
+      Script: {instanceID: 8160}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -344,6 +356,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2580}
     - Class: 114
+      Script: {instanceID: 2646}
+    - Class: 114
       Script: {instanceID: 2712}
     - Class: 114
       Script: {instanceID: 2738}
@@ -354,43 +368,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2952}
     - Class: 114
-      Script: {instanceID: 4186}
+      Script: {instanceID: 4180}
     - Class: 114
-      Script: {instanceID: 4226}
+      Script: {instanceID: 4188}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4228}
     - Class: 114
-      Script: {instanceID: 4848}
+      Script: {instanceID: 4504}
     - Class: 114
-      Script: {instanceID: 5070}
+      Script: {instanceID: 4852}
     - Class: 114
-      Script: {instanceID: 5110}
+      Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5344}
+      Script: {instanceID: 5116}
     - Class: 114
-      Script: {instanceID: 5464}
+      Script: {instanceID: 5350}
     - Class: 114
-      Script: {instanceID: 5684}
+      Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 5916}
+      Script: {instanceID: 5690}
     - Class: 114
-      Script: {instanceID: 6136}
+      Script: {instanceID: 5922}
     - Class: 114
-      Script: {instanceID: 6716}
+      Script: {instanceID: 6142}
     - Class: 114
-      Script: {instanceID: 6974}
+      Script: {instanceID: 6294}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 6722}
     - Class: 114
-      Script: {instanceID: 7260}
+      Script: {instanceID: 6980}
     - Class: 114
-      Script: {instanceID: 7386}
+      Script: {instanceID: 7118}
     - Class: 114
-      Script: {instanceID: 7606}
+      Script: {instanceID: 7266}
     - Class: 114
-      Script: {instanceID: 7710}
+      Script: {instanceID: 7392}
     - Class: 114
-      Script: {instanceID: 7984}
+      Script: {instanceID: 7612}
+    - Class: 114
+      Script: {instanceID: 7716}
+    - Class: 114
+      Script: {instanceID: 7992}
+    - Class: 114
+      Script: {instanceID: 8160}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1050,6 +1070,12 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
+      Hash: 3379b9634f7b9789d26afdad6c0fd853
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SaveToFile
+  - hash:
+      serializedVersion: 2
       Hash: d8965cdc6b5921ab641c4d9f39c1de88
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1206,6 +1232,12 @@ ScriptsOnlyBuild:
     className: UnityOnBeginDragMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 50635495736ca9fcaf940c28e458290d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Button1
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1230,7 +1262,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: ad301685f7f0eb4918a81a364ff208b6
+      Hash: c9e22abf1363e426fdffc2d385ec7924
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawn
@@ -1296,7 +1328,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 4dc55d0f54e4c79809c048c2b537ffac
+      Hash: d60e0d71924096f337fd64f21bf5038a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MemeAIController
@@ -1734,7 +1766,7 @@ ScriptsOnlyBuild:
     className: UnityOnParticleCollisionMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 2baa79c7a1eb33b4f895226189830b1a
+      Hash: 7f862c0aaa6a17d858dd5e2123a4abb3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Pickup
@@ -1786,6 +1818,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: a26002f8da30c09beac9079e91853499
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DiaMan
   - hash:
       serializedVersion: 2
       Hash: 66a76d307baa3e8eb65d877c961f1b43
@@ -1862,4 +1900,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Testing.unity
   - Assets/Scenes/The Backrooms.unity
-  playerPath: C:/Users/nicol/Desktop/Build2007a/Memland School.exe
+  playerPath: C:/Users/nicol/Desktop/Alogical/Build2010a/Memland School.exe

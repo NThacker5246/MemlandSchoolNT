@@ -4,44 +4,67 @@ using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
-	public Inventory inventory;
+	[SerializeField] private Inventory inventory;
 	public int i;
-	public VectorValue save;
-
-	private void Start()
-	{
-		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-	}
 
 	private void Update()
 	{
 		if(transform.childCount <= 0)
 		{
-			inventory.isFull[i] = false;
+			
 		}
 	}
+
 
 	public void DropItem()
 	{
-		foreach(Transform child in transform)
-		{
-			child.GetComponent<Spawn>().SpawnDroppedItem();
-			GameObject.Destroy(child.gameObject);
+		if(transform.childCount > 0){
+			if(i == inventory.emp - 1){
+				//inventory.isFull[i] = false;
+				inventory.ResetBit(i);
+				Transform child = transform.GetChild(0); 
+				child.GetComponent<Spawn>().SpawnDroppedItem();
+				inventory.emp -= 1;
+				if(inventory.ful > (short) (inventory.emp - 1)){
+					inventory.ful = (short) (inventory.emp - 1);
+				}
+				Destroy(child.gameObject);
+			} else {
+				inventory.delC += 1;
+				//inventory.isFull[i] = false;
+				inventory.ResetBit(i);
+				Transform child = transform.GetChild(0); 
+				child.GetComponent<Spawn>().SpawnDroppedItem();
+				if(inventory.ful > (short) (i - 1)) {
+					inventory.ful = (short) (i - 1);
+				}
+				Destroy(child.gameObject);
+			}
 		}
 	}
 
-	public void Save(){
-		foreach(Transform child in transform)
-		{
-			save.Inventory[i] = child.gameObject;
-		}
-	}
-
-	public void Load(){
-		foreach(Transform child in transform)
-		{
-			GameObject gm = save.Inventory[i];
-			Instantiate(gm, inventory.slots[i].transform);
+	public void Throw2Item()
+	{
+		if(transform.childCount > 0){
+			if(i == inventory.emp - 1){
+				//inventory.isFull[i] = false;
+				inventory.ResetBit(i);
+				Transform child = transform.GetChild(0); 
+				child.GetComponent<Spawn>().ThrowItem();
+				inventory.emp -= 1;
+				if(inventory.ful > (short) (inventory.emp - 1)){
+					inventory.ful = (short) (inventory.emp - 1);
+				}
+			} else {
+				inventory.delC += 1;
+				//inventory.isFull[i] = false;
+				inventory.ResetBit(i);
+				Transform child = transform.GetChild(0); 
+				child.GetComponent<Spawn>().ThrowItem();
+				if(inventory.ful > (short) (i - 1)) {
+					inventory.ful = (short) (i - 1);
+				}
+			}
 		}
 	}
 }

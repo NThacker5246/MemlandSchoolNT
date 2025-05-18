@@ -12,17 +12,17 @@ public class Spawn : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
         sv = GameObject.FindGameObjectWithTag("sv").GetComponent<SaveToFile>();
-        sv.Check();
+        player = sv.player;
     }
 
     public void SpawnDroppedItem()
     {
-        Vector3 playerPos = new Vector3(player.position.x, player.position.y, player.position.z + 5);
-        GameObject gm = Instantiate(item, playerPos, Quaternion.identity);
-        sv.AddItem(gm);
+        Vector3 playerPos = player.position + player.forward*3 - new Vector3(0, 1, 0);
+        GameObject gm = Instantiate(item, playerPos, item.transform.rotation);
+        short id = sv.AddItem(gm);
+        gm.GetComponent<Pickup>().num = id;
     }
 
     public void ThrowItem()
@@ -34,7 +34,8 @@ public class Spawn : MonoBehaviour
         gm.GetComponent<Rigidbody>().AddForce(Quaternion.Euler(an)*new Vector3(0, 0, 1000));
         gm.GetComponent<Pickup>().ignore = true;
         StartCoroutine(bott(gm));
-        sv.AddItem(gm);
+        short id = sv.AddItem(gm);
+        gm.GetComponent<Pickup>().num = id;
     }
 
     IEnumerator bott(GameObject gm){

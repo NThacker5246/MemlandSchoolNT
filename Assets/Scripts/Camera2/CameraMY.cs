@@ -14,6 +14,7 @@ public class CameraMY : MonoBehaviour
         transform.position = targetPosition;
         float MouseY = Input.GetAxis("Mouse Y") * -100f * Time.deltaTime;
         roX += MouseY;
+        roX = roX % 361;
     }
 
     void LateUpdate()
